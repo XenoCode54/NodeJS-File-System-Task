@@ -1,5 +1,5 @@
 const http = require('http');
-// const fs = require('fs');
+const fs = require('fs');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -21,10 +21,11 @@ http.get('http://jsonplaceholder.typicode.com/posts', (resp) => {
 
     // The whole response has been received. Print out the result.
     resp.on('end', () => {
-        // fs.writeFile('result/post.json', data, function (err) {
-        //     if (err) return console.log(err);
-        //     console.log(`${data} > post.json`);
-        console.log(data);
+        fs.writeFile('result/post.json', data, function (err) {
+            if (err) return console.log(err);
+            console.log(`${data} > post.json`);
+            console.log(data);
+        });
     });
 
 }).on("error", (err) => {
